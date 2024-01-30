@@ -1,5 +1,5 @@
-import React, { Profiler,useState } from 'react'
-import "./App.css"
+import React, { useState } from 'react'
+
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
