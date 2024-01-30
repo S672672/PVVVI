@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 
 export default function NavBar() {
@@ -112,4 +113,4 @@ export default function NavBar() {
     </nav>
   )
   )
-}
+} 
