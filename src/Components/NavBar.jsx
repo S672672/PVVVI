@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 
 export default function NavBar() {
@@ -89,25 +88,9 @@ export default function NavBar() {
           </div>
 
           <button className="bg-blue-500 text-white my-5 px-6 py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline text-lg">
-           Adopt?
+           Login
           </button>
-
-          <div className="text-white">
-            <svg
-              className="w-8 h-8 m-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </div>
+          <img src='./src/assets/profile2.jpg' className='h-12 w-12 rounded-2xl cursor-pointer transition-all '></img>
         </div>
       </div>
     </nav>
