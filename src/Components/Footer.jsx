@@ -2,13 +2,13 @@ import React from 'react';
 
 export default function Footer(){
   return (
-    <footer className="bg-gray-800 text-white p-4 h-96 w-full"> 
-      <div className="container mx-auto flex justify-center gap-5 items-center">
+    <footer className="bg-gray-800 text-white p-4 h-96 fw-full flex justify-between"> 
+      <div className="container m-5 flex justify-around">
         <div>
           <p className="text-lg font-bold">LOGO</p>
           <p>&copy; 2024 All rights reserved.</p>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex justify-around">
         <div>
           <a href="#" className="hover:text-gray-300 text-5xl">Home</a>
           </div>
@@ -22,6 +22,9 @@ export default function Footer(){
           <div className='flex flex-col gap-2 items-center justify-center'>
           <a href="#" className="hover:text-gray-300 text-5xl">Contact us</a>
           <a href='#' className="hover:text-gray-300 text-2xl">Facebook</a>
+          <a href='#' className="hover:text-gray-300 text-2xl">Instagram</a>
+          <a href='#' className="hover:text-gray-300 text-2xl">Twitter</a>
+          <a href='#' className="hover:text-gray-300 text-2xl">LinkedIn</a>
           </div>
         </div>
       </div>
