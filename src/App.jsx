@@ -4,12 +4,10 @@ import HomePage from './Components/HomePage'
 import Cards from './Components/Cards'
 import CardsSection from './Components/CardsSection'
 
-function App() {
+export default function App() {
   return (
     <div>
-     <CardsSection />
+   <HomePage />
     </div>
   )
 }
-
-export default App

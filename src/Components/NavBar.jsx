@@ -7,7 +7,7 @@ export default function NavBar() {
       <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
    
-        <div className="text-white font-bold text-2xl">YourLogo</div>
+        <div className="text-white font-bold text-2xl">LOGO</div>
 
         
         <div className="lg:hidden">
@@ -86,11 +86,10 @@ export default function NavBar() {
               </svg>
             </button>
           </div>
-
           <button className="bg-blue-500 text-white my-5 px-6 py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline text-lg">
            Login
           </button>
-          <img src='./src/assets/profile2.jpg' className='h-12 w-12 rounded-2xl cursor-pointer transition-all '></img>
+          <img src='./src/assets/profile.jpg' className='h-12 w-12 rounded-2xl cursor-pointer transition-all '></img>
         </div>
       </div>
     </nav>
