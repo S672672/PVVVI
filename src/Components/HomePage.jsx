@@ -4,13 +4,15 @@ import NavBar from './NavBar'
 import Footer from './Footer'
 import ShowCase from './ShowCase'
 import Category from './Category'
+import Process from './Process'
 export default function HomePage() {
   return (
     <div>
         <NavBar /> 
-        <div className='flex flex-col items-center justify-center mx-20'>
+        <div className='flex flex-col items-center justify-center'>
         <ShowCase />
          <CardsSection />
+         <Process />
          </div>
           <Footer />
     </div>
