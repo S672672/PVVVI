@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <div>
         <NavBar /> 
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center mx-20'>
         <ShowCase />
          <CardsSection />
          </div>
