@@ -7,10 +7,12 @@ import Category from './Category'
 export default function HomePage() {
   return (
     <div>
-        <NavBar />
+        <NavBar /> 
+        <div className='flex flex-col items-center justify-center'>
         <ShowCase />
-        <CardsSection />
-        <Footer />
+         <CardsSection />
+         </div>
+          <Footer />
     </div>
   )
 }
