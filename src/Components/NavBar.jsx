@@ -11,8 +11,8 @@ export default function Navbar(){
           <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
         </button>
       </div>
-      <div className="w-full block flex flex-grow lg:flex lg:items-center lg:w-auto justify-between lg:ml-96">
-        <div className="text-sm lg:flex-grow text-xl font-bold">
+      <div className="w-full flex flex-grow lg:flex lg:items-end lg:w-auto justify-end">
+        <div className="text-sm lg:flex-grow text-xl font-bold lg:pl-96 lg:ml-96">
           <a href="#search" className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-black mr-4">
             Adopt
           </a>
