@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
         {/* Logo and Copyright */}
         <div className="text-center sm:text-left mb-8 sm:mb-0">
-          <img src="/path/to/your/logo.png" alt="Company Logo" className="w-16 h-16 mb-2" />
+          <img src="./src/assets/logo.png" alt="Company Logo" className="h-16 mb-2" />
           <p className="text-lg font-bold">&copy; 2024 All rights reserved.</p>
         </div>
 
