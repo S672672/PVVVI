@@ -3,9 +3,10 @@ import React from 'react';
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between bg-white p-6 border-4 border-b">
-      <div className="flex items-center flex-shrink-0 text-black mr-6">
+    <img className='h-16 ml-10' src='./src/assets/logo.png'></img>
+      {/* <div className="flex items-center flex-shrink-0 text-black mr-6">
         <span className="font-semibold text-xl tracking-tight">PetAdopt</span>
-      </div>
+      </div> */}
       <div className="block lg:hidden">
         <button className="flex items-center px-3 py-2 border rounded text-gray-800 border-gray-800 hover:text-black hover:border-black">
           <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
