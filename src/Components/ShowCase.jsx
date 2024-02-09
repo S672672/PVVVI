@@ -3,7 +3,7 @@ import React from 'react';
 export default function ShowCase() {
   const background = 'url("./src/assets/dog.jpeg")';
   return (
-    <div className='lg:w-2/3 md:w-3/4 sm:w-full bg-gray-400 rounded-md m-5' style={{ height: '600px', backgroundImage: background, backgroundSize: 'cover' }}>
+    <div className='lg:w-2/3 md:w-3/4 sm:w-full bg-gray-400 rounded-md m-5 cursor-pointer' style={{ height: '600px', backgroundImage: background, backgroundSize: 'cover' }}>
       <div className='flex flex-col lg:mt-80 mt-20 gap-10'>
         <h1 className='text-white font-bold text-4xl lg:ml-10 ml-5'>Find your best friend <br />as a pet.</h1>
         <div className='flex flex-col lg:flex-row items-center gap-5 lg:mx-10 mx-5'>
