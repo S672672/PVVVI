@@ -1,10 +1,10 @@
 import React from "react";
 import Signup from "../Signup";
-import {Router, Link } from "react-router-dom";
+import {Link,Routes} from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <Router>
+    <Routes>
     <nav className="flex items-center justify-between bg-white p-6 border-4 border-b">
       <img className="h-16 ml-10 transform hover:scale-105 transition-transform duration-200 cursor-pointer" src="./src/assets/logo.png"></img>
       {/* <div className="flex items-center flex-shrink-0 text-black mr-6">
@@ -57,7 +57,7 @@ export default function Navbar() {
           <button className="block mt-4 lg:inline-block lg:mt-0 text-white bg-green-500 hover:bg-blue-400 py-2 px-4 rounded-lg mr-4 font-bold">
             Log In
           </button>
-          <Link to='/Signup'>
+          <Link to='/signup'>
           <button className="block mt-4 lg:inline-block lg:mt-0 text-white bg-orange-500 hover:bg-blue-400 py-2 px-4 rounded-lg font-bold">
             Sign Up
           </button>
@@ -65,6 +65,6 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-    </Router>
+    </Routes>
   );
 }

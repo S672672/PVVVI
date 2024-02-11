@@ -6,10 +6,10 @@ import ShowCase from './ShowCase'
 import Category from './Category'
 import Process from './Process'
 import Signup from '../Signup'
-import { Route } from 'react-router-dom'
+import { Route, Router } from 'react-router-dom'
+import Approuter from './Router'
 export default function HomePage() {
   return (
-    <Route>
     <div> 
         <NavBar />
         <div className='flex flex-col items-center justify-center'>
@@ -19,7 +19,7 @@ export default function HomePage() {
          </div>
           <Footer />
     </div>
-    </Route>
+   
     
   )
 }

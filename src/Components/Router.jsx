@@ -1,23 +1,18 @@
-import { createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from "./NavBar";
 import Signup from "../Signup";
 import HomePage from "./HomePage";
 
-const Router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HomePage />,
-      children:[
-        {
-          path:'',
-          element:<HomePage />
-        },
-        {
-          path:"Signup",
-          element:<Signup />
-        }
-      ]
-    },
-  ]);
+const Approuter = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path='/signup' exact component={Signup} />
+        {/* Add other routes as needed */}
+      </Switch>
+    </Router>
+  );
+}
 
-export default Router;
+export default Approuter;
