@@ -1,10 +1,9 @@
 import React from "react";
 import Signup from "../Signup";
-import {Link,Routes} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <Routes>
     <nav className="flex items-center justify-between bg-white p-6 border-4 border-b">
       <img className="h-16 ml-10 transform hover:scale-105 transition-transform duration-200 cursor-pointer" src="./src/assets/logo.png"></img>
       {/* <div className="flex items-center flex-shrink-0 text-black mr-6">
@@ -65,6 +64,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-    </Routes>
   );
 }
