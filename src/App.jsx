@@ -7,7 +7,6 @@ import AboutUs from './Pages/AboutUs'
 
 export default function App() {
   return (
-  
     <div>
     <HomePage />
     </div>
