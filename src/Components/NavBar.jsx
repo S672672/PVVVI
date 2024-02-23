@@ -1,6 +1,6 @@
 import React from "react";
 import Signup from "../Signup";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
@@ -33,12 +33,13 @@ export default function Navbar() {
           >
             Adopt
           </a>
-          <a
-            href="#adopt"
+          <Link to = '/giveaway'>
+          <div
             className="hover:underline block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-black mr-2 lg:mr-4 transform hover:scale-105 transition-transform duration-200"
           >
             Give
-          </a>
+          </div>
+          </Link>
           <a
             href="#give"
             className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-black mr-2 lg:mr-4 hover:underline transform hover:scale-105 transition-transform duration-200"
@@ -56,11 +57,11 @@ export default function Navbar() {
           <button className="block mt-4 lg:inline-block lg:mt-0 text-white bg-green-500 hover:bg-blue-400 py-2 px-4 rounded-lg mr-4 font-bold">
             Log In
           </button>
-          <NavLink to = "/signup">
+          <Link to = "/signup">
           <button className="block mt-4 lg:inline-block lg:mt-0 text-white bg-orange-500 hover:bg-blue-400 py-2 px-4 rounded-lg font-bold">
             Sign Up
           </button>
-          </NavLink>
+          </Link>
         </div>
       </div>
     </nav>
