@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Components/NavBar';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -14,6 +15,8 @@ export default function Signup() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="flex items-center justify-center h-screen">
       <form className="bg-white p-8 rounded border border-gray-300 shadow-md w-full max-w-md">
         <div className="mb-4">
@@ -97,5 +100,6 @@ export default function Signup() {
         </div>
       </form>
     </div>
+    </>
   );
 }

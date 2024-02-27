@@ -1,11 +1,13 @@
 import React from "react";
 import Signup from "../Signup";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between bg-white p-6 border-4 border-b">
+    <NavLink to = '/'>
       <img className="h-16 ml-10 transform hover:scale-105 transition-transform duration-200 cursor-pointer" src="./src/assets/logo.png"></img>
+      </NavLink>
       {/* <div className="flex items-center flex-shrink-0 text-black mr-6">
         <span className="font-semibold text-xl tracking-tight">PetAdopt</span>
       </div> */}
@@ -33,13 +35,13 @@ export default function Navbar() {
           >
             Adopt
           </a>
-          <Link to = '/giveaway'>
+          <NavLink to = '/giveaway'>
           <div
             className="hover:underline block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-black mr-2 lg:mr-4 transform hover:scale-105 transition-transform duration-200"
           >
             Give
           </div>
-          </Link>
+          </NavLink>
           <a
             href="#give"
             className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-black mr-2 lg:mr-4 hover:underline transform hover:scale-105 transition-transform duration-200"
@@ -57,11 +59,11 @@ export default function Navbar() {
           <button className="block mt-4 lg:inline-block lg:mt-0 text-white bg-green-500 hover:bg-blue-400 py-2 px-4 rounded-lg mr-4 font-bold">
             Log In
           </button>
-          <Link to = "/signup">
+          <NavLink to = "/signup" activeClass = 'active'>
           <button className="block mt-4 lg:inline-block lg:mt-0 text-white bg-orange-500 hover:bg-blue-400 py-2 px-4 rounded-lg font-bold">
             Sign Up
           </button>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </nav>
