@@ -1,11 +1,10 @@
 const express = require('express');
 const multer = require('multer');
 const Pet = require('../models/petModel');
-const auth = require('../MiddleWare/authMiddleWare'); // Middleware for auth check
+const auth = require('../MiddleWare/authMiddleWare');
 
 const router = express.Router();
 
-// Configure multer for image upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -17,7 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Give away a pet (create a pet post)
+
 router.post('/giveaway', auth, upload.single('image'), async (req, res) => {
   const { name, age, breed, description } = req.body;
 
@@ -37,7 +36,7 @@ router.post('/giveaway', auth, upload.single('image'), async (req, res) => {
   }
 });
 
-// View all available pets
+
 router.get('/available', async (req, res) => {
   try {
     const pets = await Pet.find({ status: 'Available' });
@@ -47,7 +46,7 @@ router.get('/available', async (req, res) => {
   }
 });
 
-// Adopt a pet (update status)
+
 router.post('/adopt/:id', auth, async (req, res) => {
   try {
     const pet = await Pet.findById(req.params.id);
