@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
+const path = require('path');
 require('dotenv').config(); 
 
 const authRoutes = require('./routes/authRoutes');
@@ -10,6 +11,8 @@ const app = express();
 connectDB();
 
 app.use(bodyParser.json());
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pets', petRoutes);
