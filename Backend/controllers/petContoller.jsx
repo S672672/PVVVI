@@ -2,8 +2,22 @@ const Pet = require('../models/petModel');
 
 exports.createPet = async (req, res) => {
   try {
-    const { petName, species, breed, size, description, age, spayedNeutered, vaccinated, trained, phoneNumber, email, address } = req.body;
-    const photos = req.files.map(file => file.filename); 
+    const {
+      petName,
+      species,
+      breed,
+      size,
+      description,
+      age,
+      spayedNeutered,
+      vaccinated,
+      trained,
+      phoneNumber,
+      email,
+      address
+    } = req.body;
+    
+    const photos = req.files.map(file => file.filename);
 
     const newPet = new Pet({
       petName,
@@ -18,7 +32,7 @@ exports.createPet = async (req, res) => {
       phoneNumber,
       email,
       address,
-      photos,
+      photos
     });
 
     await newPet.save();
