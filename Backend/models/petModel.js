@@ -13,7 +13,7 @@ const petSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   email: { type: String, required: true },
   address: { type: String, required: true },
-  photos: { type: [String] }, // Storing photo file paths
+  photos: { type: [String] },
 });
 
 const Pet = mongoose.model("Pet", petSchema);

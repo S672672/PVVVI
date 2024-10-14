@@ -1,19 +1,19 @@
-const express = require("express");
-const multer = require("multer");
-const { createPet } = require("../controllers/petContoller");
+const express = require('express');
+const multer = require('multer');
+const petController = require('../controllers/petController');
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
   },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
 });
-const upload = multer({ storage });
 
-router.post("/create", upload.array("photos", 10), createPet);
+const upload = multer({ storage: storage });
+router.post('/create', upload.array('photos', 5), petController.createPet);
 
 module.exports = router;
