@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db')
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config(); 
 const authRoutes = require('./routes/authRoutes');
 const petRoutes = require('./routes/petRoute');
@@ -9,7 +10,12 @@ const petRoutes = require('./routes/petRoute');
 const app = express();
 connectDB();
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(express.json());
+
+app.use(cors({
+    origin: 'http://localhost:5173'
+  }));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

@@ -1,50 +1,67 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
-const authMiddleware = require('../MiddleWare/authMiddleWare')
-
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
+const authMiddleware = require("../MiddleWare/authMiddleWare");
 const router = express.Router();
 
-// User Signup
-router.post('/signup', async (req, res) => {
-  const { name, email, password } = req.body;
+const JWT_SECRET = "your_jwt_secret_key";
+
+router.post("/signup", async (req, res) => {
+  const { username, email, password } = req.body;
 
   try {
-    const user = new User({ name, email, password });
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    user = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
     await user.save();
-    res.status(201).json({ message: 'User created successfully' });
+
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+
+    res.json({ token });
   } catch (error) {
-    res.status(400).json({ message: 'Error in creating user', error });
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-// User Login
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    console.log("User Found: ", user);
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+    console.log("Password Match: ", isMatch);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
 
-    const token = jwt.sign({ id: user._id }, 'secretKey', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+
     res.json({ token });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-router.get('/profile', authMiddleware, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-    if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
+router.get("/protected", authMiddleware, (req, res) => {
+  res.json({ message: "Access to protected route", user: req.user });
 });
 
 module.exports = router;
