@@ -41,3 +41,12 @@ exports.createPet = async (req, res) => {
     res.status(500).json({ message: "Error creating pet listing", error });
   }
 };
+
+exports.getAllPets = async (req, res) => {
+  try {
+      const pets = await Pet.find().select('petName description photos');
+      res.status(200).json(pets); 
+  } catch (error) {
+      res.status(500).json({ message: "Error fetching pets", error });
+  }
+};

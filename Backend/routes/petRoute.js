@@ -15,5 +15,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 router.post('/create', upload.array('photos', 5), petController.createPet);
+router.get('/', petController.getAllPets);
 
 module.exports = router;
