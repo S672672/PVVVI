@@ -79,3 +79,33 @@ exports.approvePet = async (req, res) => {
   }
 };
 
+exports.allPets = async (reqStatus, req, res) => {
+  try {
+    const data = await Pet.find({ status: reqStatus }).sort({ updatedAt: -1 });
+    if (data.length > 0) {
+      res.status(200).json(data);
+    } else {
+      res.status(404).json({ error: 'No data found' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.deletePost = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const pet = await Pet.findByIdAndDelete(id);
+    if (!pet) {
+      return res.status(404).json({ error: 'Pet not found' });
+    }
+    const filePath = path.join(__dirname, '../images', pet.filename);
+
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+    res.status(200).json({ message: 'Pet deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

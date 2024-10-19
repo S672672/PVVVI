@@ -14,6 +14,7 @@ const petSchema = new mongoose.Schema({
   email: { type: String, required: true },
   address: { type: String, required: true },
   photos: { type: [String] },
+  isApproved: { type: Boolean, default: false },
 });
 
 const Pet = mongoose.model("Pet", petSchema);
