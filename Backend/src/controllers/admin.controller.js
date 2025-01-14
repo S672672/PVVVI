@@ -1,24 +1,32 @@
+const { formatResponse } = require('../utils/helpers');
+const { PET_STATUSES } = require('../utils/constants');
 
-const Pet = require('../models/pet.model');
 
-
-exports.approvePet = async (req, res) => {
+exports.approvePet = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const pet = await Pet.findByIdAndUpdate(id, { isApproved: true }, { new: true });
-    if (!pet) return res.status(404).json({ error: 'Pet not found' });
-    res.json({ message: 'Pet approved successfully', pet });
+
+    const pet = await Pet.findById(id);
+    if (!pet) {
+      return res.status(404).json(formatResponse(false, null, 'Pet not found'));
+    }
+
+    pet.status = PET_STATUSES.APPROVED;
+    await pet.save();
+
+    res.status(200).json(formatResponse(true, pet, 'Pet approved successfully'));
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    next(err);
   }
 };
 
 
-exports.getUnapprovedPets = async (req, res) => {
+exports.getUnapprovedPets = async (req, res, next) => {
   try {
-    const pets = await Pet.find({ isApproved: false });
-    res.json(pets);
+    const unapprovedPets = await Pet.find({ status: PET_STATUSES.PENDING });
+
+    res.status(200).json(formatResponse(true, unapprovedPets, 'Unapproved pets fetched successfully'));
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    next(err);
   }
 };
