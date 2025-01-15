@@ -1,24 +1,30 @@
-const jwt = require('jsonwebtoken');
-const { ROLES } = require('../utils/constants');
+const ApiError = require('../utils/ApiError.js')
+const asyncHandler  = require("../utils/asyncHandler.js");
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.model.js");
 
-exports.authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: 'Invalid token' });
-  }
-};
-
-exports.authorizeAdmin = (req, res, next) => {
-  if (req.user.role !== ROLES.ADMIN) {
-    return res.status(403).json({ error: 'Access denied. Admins only.' });
-  }
-  next();
-};
+export const verifyJWT = asyncHandler(async(req, _, next) => {
+    try {
+        const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
+        
+        // console.log(token);
+        if (!token) {
+            throw new ApiError(401, "Unauthorized request")
+        }
+    
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    
+        const user = await User.findById(decodedToken?._id).select("-password -refreshToken")
+    
+        if (!user) {
+            
+            throw new ApiError(401, "Invalid Access Token")
+        }
+    
+        req.user = user;
+        next()
+    } catch (error) {
+        throw new ApiError(401, error?.message || "Invalid access token")
+    }
+    
+})

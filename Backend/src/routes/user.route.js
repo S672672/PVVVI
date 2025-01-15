@@ -1,4 +1,4 @@
-// src/routes/userRoutes.js
+
 const express = require('express');
 const { register, login } = require('../controllers/user.controller');
 const { validate } = require('../middlewares/validate.middleware');
@@ -6,7 +6,7 @@ const { body } = require('express-validator');
 
 const router = express.Router();
 
-// User registration route
+
 router.post(
   '/register',
   [
@@ -18,7 +18,7 @@ router.post(
   register
 );
 
-// User login route
+
 router.post(
   '/login',
   [
