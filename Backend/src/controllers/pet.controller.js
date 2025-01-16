@@ -1,52 +1,38 @@
 const Pet = require('../models/pet.model');
-const { formatResponse } = require('../utils/helpers');
-const { paginate } = require('../utils/paginationUtils');
-const { PET_STATUSES } = require('../utils/constants');
+const { ApiError } = require('../utils/ApiError');
+const { ApiResponse } = require('../utils/ApiResponse');
+const { asyncHandler } = require('../utils/asyncHandler');
 
 // Submit a new pet
-exports.submitPet = async (req, res, next) => {
-  try {
+const submitPet = asyncHandler(async (req, res) => {
     const { name, age, breed, description } = req.body;
     const imageUrl = req.file ? req.file.cloudinaryUrl : null;
 
     if (!imageUrl) {
-      return res.status(400).json(formatResponse(false, null, 'Image upload failed'));
+        throw new ApiError(400, 'Image upload failed');
     }
 
     const pet = await Pet.create({
-      name,
-      age,
-      breed,
-      description,
-      imageUrl,
-      status: PET_STATUSES.PENDING,
-      owner: req.user.id, // Assuming `req.user.id` contains the authenticated user ID
+        name,
+        age,
+        breed,
+        description,
+        imageUrl,
+        owner: req.user.id,
     });
 
-    res.status(201).json(formatResponse(true, pet, 'Pet submitted successfully'));
-  } catch (err) {
-    next(err);
-  }
-};
+    return ApiResponse.success(res, pet, 'Pet submitted successfully', 201);
+});
 
-// Example of disabling caching in Express.js
-exports.getApprovedPets = async (req, res, next) => {
-  try {
-    // Disable caching by setting appropriate headers
-    res.set('Cache-Control', 'no-store'); // Prevent caching
+// Get all pets
+const getAllPets = asyncHandler(async (req, res) => {
+    const pets = await Pet.find();
 
-    const { page = 1, limit = 10 } = req.query; // Set default values for pagination
-    const petsQuery = Pet.find({ status: PET_STATUSES.APPROVED });
+    if (!pets.length) {
+        throw new ApiError(404, 'No pets found');
+    }
 
-    // Apply pagination to the query
-    const { totalItems, totalPages, offset, limit: actualLimit } = paginate(page, limit, await Pet.countDocuments({ status: PET_STATUSES.APPROVED }));
+    return ApiResponse.success(res, pets, 'Pets fetched successfully');
+});
 
-    // Fetch the paginated pets
-    const pets = await petsQuery.skip(offset).limit(actualLimit);
-
-    res.status(200).json(formatResponse(true, { pets, pagination: { totalItems, totalPages, page, limit: actualLimit } }, 'Approved pets fetched successfully'));
-  } catch (err) {
-    next(err);
-  }
-};
-
+export {submitPet,getAllPets}
