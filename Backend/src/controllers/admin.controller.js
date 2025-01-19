@@ -1,8 +1,9 @@
 const { formatResponse } = require('../utils/helpers');
 const { PET_STATUSES } = require('../utils/constants');
+const Pet = require("../models/pet.model")
 
 
-exports.approvePet = async (req, res, next) => {
+const approvePet = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -21,7 +22,7 @@ exports.approvePet = async (req, res, next) => {
 };
 
 
-exports.getUnapprovedPets = async (req, res, next) => {
+const getUnapprovedPets = async (req, res, next) => {
   try {
     const unapprovedPets = await Pet.find({ status: PET_STATUSES.PENDING });
 
@@ -30,3 +31,26 @@ exports.getUnapprovedPets = async (req, res, next) => {
     next(err);
   }
 };
+
+const deletePet = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const pet = await Pet.findById(id);
+    if (!pet) {
+      return res
+        .status(404)
+        .json(ApiResponse.error("Pet not found", 404));
+    }
+
+    await pet.remove();
+
+    return res
+      .status(200)
+      .json(ApiResponse.success("Pet deleted successfully", {}));
+  } catch (error) {
+    return res.status(500).json(ApiResponse.error(error.message, 500));
+  }
+};
+
+export {approvePet,getUnapprovedPets,deletePet}
