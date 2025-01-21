@@ -35,4 +35,17 @@ const getAllPets = asyncHandler(async (req, res) => {
     return ApiResponse.success(res, pets, 'Pets fetched successfully');
 });
 
-export {submitPet,getAllPets}
+//get specifi pet profile
+const getPetProfile = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const pet = await Pet.findById(id);
+
+    if (!pet) {
+        throw new ApiError(404, 'Pet not found');
+    }
+
+    return ApiResponse.success(res, pet, 'Pet profile fetched successfully');
+});
+
+export {submitPet,getAllPets,getPetProfile}
