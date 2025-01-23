@@ -1,8 +1,8 @@
-const asyncHandler = require('../utils/asyncHandler.js');
-const ApiError = require('../utils/ApiError.js');
-const User = require('../models/user.model.js');
-const ApiResponse = requie('../uitls/ApiResponse.js');
-const jwt = require('jsonwebtokem');
+const {asyncHandler} = require('../utils/asyncHandler.js');
+const {ApiError} = require('../utils/ApiError.js');
+const {User} = require('../models/user.model.js');
+const {ApiResponse} = require('../utils/ApiResponse.js');
+const {jwt} = require('jsonwebtoken');
 
 
 const generateAccessAndRefereshTokens = async(userId) =>{
@@ -253,4 +253,4 @@ const updateAccountDetails = asyncHandler(async(req, res) => {
     .json(new ApiResponse(200, user, "Account details updated successfully"))
 });
 
-export {registerUser,loginUser,logoutUser,refreshAccessToken,changeCurrentPassword,getCurrentUser,updateAccountDetails}
+module.exports = {registerUser,loginUser,logoutUser,refreshAccessToken,changeCurrentPassword,getCurrentUser,updateAccountDetails}

@@ -1,6 +1,6 @@
 const { formatResponse } = require('../utils/helpers');
 const { PET_STATUSES } = require('../utils/constants');
-const Pet = require("../models/pet.model")
+const {Pet} = require("../models/pet.model")
 
 
 const approvePet = async (req, res, next) => {
@@ -53,4 +53,4 @@ const deletePet = async (req, res) => {
   }
 };
 
-export {approvePet,getUnapprovedPets,deletePet}
+module.exports = {approvePet,getUnapprovedPets,deletePet}

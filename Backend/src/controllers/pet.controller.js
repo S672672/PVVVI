@@ -1,4 +1,4 @@
-const Pet = require('../models/pet.model');
+const {Pet} = require('../models/pet.model');
 const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
 const { asyncHandler } = require('../utils/asyncHandler');
@@ -48,4 +48,5 @@ const getPetProfile = asyncHandler(async (req, res) => {
     return ApiResponse.success(res, pet, 'Pet profile fetched successfully');
 });
 
-export {submitPet,getAllPets,getPetProfile}
+module.exports = {submitPet,getAllPets,getPetProfile}
+
